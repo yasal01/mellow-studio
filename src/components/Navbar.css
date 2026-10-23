@@ -1,0 +1,233 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  padding: 0.85rem clamp(1rem, 4vw, 2rem);
+  transition: padding 0.35s var(--ease);
+}
+
+.nav--scrolled {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+.nav__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.55rem 0.7rem 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 253, 0.72);
+  border: 1px solid rgba(201, 184, 232, 0.35);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 28px rgba(90, 70, 130, 0.06);
+  transition:
+    background 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.nav--scrolled .nav__inner {
+  background: rgba(255, 251, 253, 0.9);
+  box-shadow: var(--shadow-soft);
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.nav__mark {
+  position: relative;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.nav__mark span {
+  position: absolute;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  transition: transform 0.4s var(--ease);
+}
+
+.nav__mark span:nth-child(1) {
+  top: 0.1rem;
+  left: 0;
+  background: var(--pink);
+}
+
+.nav__mark span:nth-child(2) {
+  top: 0.1rem;
+  right: 0;
+  background: var(--sky);
+}
+
+.nav__mark span:nth-child(3) {
+  bottom: 0;
+  left: 0.4rem;
+  background: var(--lavender);
+}
+
+.nav__logo:hover .nav__mark span:nth-child(1) {
+  transform: translate(-2px, -2px);
+}
+
+.nav__logo:hover .nav__mark span:nth-child(2) {
+  transform: translate(2px, -2px);
+}
+
+.nav__logo:hover .nav__mark span:nth-child(3) {
+  transform: translateY(2px);
+}
+
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.nav__wordmark span {
+  font-weight: 500;
+  color: var(--lavender-deep);
+  margin-left: 0.15em;
+}
+
+.nav__links {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.nav__link {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  border-radius: 999px;
+  transition:
+    color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--ink);
+  background: var(--lavender-soft);
+}
+
+.nav__cta {
+  display: none;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.88rem;
+}
+
+.nav__toggle {
+  margin-left: auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--lavender-soft);
+}
+
+.nav__toggle span {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition:
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease);
+}
+
+.nav--open .nav__toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav--open .nav__toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav--open .nav__toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__drawer {
+  position: fixed;
+  inset: 5.5rem 1rem auto;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: rgba(255, 251, 253, 0.96);
+  border: 1px solid rgba(201, 184, 232, 0.4);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.nav__drawer--open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav__drawer[hidden] {
+  display: block;
+}
+
+.nav__drawer:not(.nav__drawer--open)[hidden] {
+  display: none;
+}
+
+.nav__drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav__drawer-links a:not(.btn) {
+  padding: 0.85rem 1rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: background 0.25s var(--ease);
+}
+
+.nav__drawer-links a:not(.btn):hover,
+.nav__drawer-links a:not(.btn):focus-visible {
+  background: var(--lavender-soft);
+}
+
+.nav__drawer-links .btn {
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 860px) {
+  .nav__links {
+    display: flex;
+  }
+
+  .nav__cta {
+    display: inline-flex;
+  }
+
+  .nav__toggle,
+  .nav__drawer {
+    display: none;
+  }
+}
